@@ -68,9 +68,9 @@ class ShopFragment : Fragment() {
             startActivity(Intent(requireActivity(), KeyboardActivity::class.java))
         }
 
-//        cardMouse.setOnClickListener {
-//            startActivity(Intent(requireActivity(), MouseActivity::class.java))
-//        }
+        cardMouse.setOnClickListener {
+            startActivity(Intent(requireActivity(), MouseActivity::class.java))
+        }
 
 //        cardPcCase.setOnClickListener {
 //            startActivity(Intent(requireActivity(), PcCaseActivity::class.java))
