@@ -81,6 +81,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".PcCaseActivity"
+            android:exported="true">
+        </activity>
+
 
 
     </application>
