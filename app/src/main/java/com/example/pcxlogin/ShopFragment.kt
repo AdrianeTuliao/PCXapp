@@ -60,9 +60,9 @@ class ShopFragment : Fragment() {
             startActivity(Intent(requireActivity(), SSDActivity::class.java))
         }
 
-//        cardMonitor.setOnClickListener {
-//            startActivity(Intent(requireActivity(), MonitorActivity::class.java))
-//        }
+        cardMonitor.setOnClickListener {
+            startActivity(Intent(requireActivity(), MonitorActivity::class.java))
+        }
 
         cardKeyboard.setOnClickListener {
             startActivity(Intent(requireActivity(), KeyboardActivity::class.java))

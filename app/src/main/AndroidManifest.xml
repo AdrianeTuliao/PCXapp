@@ -71,6 +71,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".MonitorActivity"
+            android:exported="true">
+        </activity>
+
 
     </application>
 
