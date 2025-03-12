@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/kuryente_background"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/oval_background"
+        android:gravity="center_horizontal|center"
+        android:translationY="-50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/oval_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/oval_background"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_rn"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/form_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/oval_background"
+        app:layout_constraintWidth_percent="0.8">
+
+        <!-- Email address -->
+        <EditText
+            android:id="@+id/Email_input"
+            android:layout_width="329dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Email address"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/password_input"
+            android:layout_width="329dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+        <!-- Password confirmation -->
+        <EditText
+            android:id="@+id/passcon_input"
+            android:layout_width="329dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Password confirmation*"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/create_btn"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="127dp"
+        android:padding="11dp"
+        android:text="Create account"
+        android:textColor="@color/white"
+        android:backgroundTint="#79747E"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
