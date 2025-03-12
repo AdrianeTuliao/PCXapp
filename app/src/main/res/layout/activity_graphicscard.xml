@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#79747E"
+        android:elevation="4dp"
+        app:titleTextColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back"
+                android:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/pcxLogo"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/logo_rn"
+                android:contentDescription="Shopping Cart"
+                android:layout_marginEnd="5dp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="6"
+                android:hint="Search..."
+                android:textColor="@color/white"
+                android:textColorHint="#CCCCCC"
+                android:background="@drawable/rounded_corner"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/sCart"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_scart"
+                android:contentDescription="Shopping Cart"
+                android:layout_marginEnd="16dp" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGraphicsCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="33dp"
+        app:backgroundTint="#79747E"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white" />
+
+</LinearLayout>

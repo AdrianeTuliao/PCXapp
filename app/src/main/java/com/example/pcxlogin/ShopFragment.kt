@@ -48,9 +48,9 @@ class ShopFragment : Fragment() {
             startActivity(Intent(requireActivity(), MotherboardActivity::class.java))
         }
 
-//        cardGraphicsCard.setOnClickListener {
-//            startActivity(Intent(requireActivity(), GraphicsCardActivity::class.java))
-//        }
+        cardGraphicsCard.setOnClickListener {
+            startActivity(Intent(requireActivity(), GraphicsCardActivity::class.java))
+        }
 
 //        cardMemory.setOnClickListener {
 //            startActivity(Intent(requireActivity(), MemoryActivity::class.java))
