@@ -76,9 +76,9 @@ class ShopFragment : Fragment() {
             startActivity(Intent(requireActivity(), PcCaseActivity::class.java))
         }
 
-//        cardLaptops.setOnClickListener {
-//            startActivity(Intent(requireActivity(), LaptopsActivity::class.java))
-//        }
+        cardLaptops.setOnClickListener {
+            startActivity(Intent(requireActivity(), LaptopsActivity::class.java))
+        }
 
         return view
     }

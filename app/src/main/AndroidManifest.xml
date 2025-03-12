@@ -86,6 +86,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".LaptopsActivity"
+            android:exported="true">
+        </activity>
+
 
 
     </application>
