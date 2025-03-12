@@ -19,18 +19,14 @@ class SSDActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ssd)
 
-        // Back Button Listener
         val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
-            // If you just want to go back to the previous activity
             finish()
         }
 
-        // Setup Toolbar
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
-        // BottomNavigationView setup
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.selectedItemId = R.id.shop
 
