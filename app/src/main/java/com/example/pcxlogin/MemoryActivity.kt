@@ -69,7 +69,7 @@ class MemoryActivity : AppCompatActivity() {
 
 
     private fun fetchProducts() {
-        val category = "Memory"
+        val category = "Ram"
         RetrofitClient.instance.getProductsByCategory(category)
             .enqueue(object : retrofit2.Callback<List<Product>> {
                 override fun onResponse(
