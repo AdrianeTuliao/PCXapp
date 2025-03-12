@@ -66,6 +66,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".SSDActivity"
+            android:exported="true">
+        </activity>
+
 
     </application>
 

@@ -56,9 +56,9 @@ class ShopFragment : Fragment() {
             startActivity(Intent(requireActivity(), MemoryActivity::class.java))
         }
 
-//        cardSSD.setOnClickListener {
-//            startActivity(Intent(requireActivity(), SSDActivity::class.java))
-//        }
+        cardSSD.setOnClickListener {
+            startActivity(Intent(requireActivity(), SSDActivity::class.java))
+        }
 
 //        cardMonitor.setOnClickListener {
 //            startActivity(Intent(requireActivity(), MonitorActivity::class.java))
