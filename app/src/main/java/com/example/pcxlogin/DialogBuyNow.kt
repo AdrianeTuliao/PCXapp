@@ -14,7 +14,7 @@ class DialogBuyNow(
     private val productName: String,
     private val productPrice: String,
     private val productImageUrl: String,
-    private val stock: Int,   // Pass stock as Int
+    private val stock: Int,
     private val onBuyNowClicked: (quantity: Int, totalPrice: Double) -> Unit
 ) : BottomSheetDialog(context) {
 
