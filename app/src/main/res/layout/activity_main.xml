@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
             android:background="@drawable/rounded_corner"
-            android:hint="Username/Email"
+            android:hint="Username"
             android:inputType="text"
             android:padding="15dp"
             android:textColor="#423B3B"
