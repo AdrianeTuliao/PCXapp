@@ -39,7 +39,7 @@ class ShopFragment : Fragment() {
         cardPcCase = view.findViewById(R.id.card_pc_case)
         cardLaptops = view.findViewById(R.id.card_laptops)
 
-        // Set click listeners for each card
+        // Click listeners for each card
         cardProcessor.setOnClickListener {
             startActivity(Intent(requireActivity(), ProcessorActivity::class.java))
         }
