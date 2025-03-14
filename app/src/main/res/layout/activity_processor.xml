@@ -9,7 +9,7 @@
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="#79747E"
+        android:background="#313131"
         android:elevation="4dp"
         app:titleTextColor="@color/white">
 
@@ -85,7 +85,7 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="33dp"
-        app:backgroundTint="#79747E"
+        app:backgroundTint="#313131"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white" />
 

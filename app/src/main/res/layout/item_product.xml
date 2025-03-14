@@ -67,7 +67,7 @@
             android:id="@+id/btnBuyNow"
             android:layout_width="180dp"
             android:layout_height="54dp"
-            android:backgroundTint="#79747E"
+            android:backgroundTint="#313131"
             android:text="BUY NOW"
             android:textColor="@color/white"
             android:textSize="23sp"

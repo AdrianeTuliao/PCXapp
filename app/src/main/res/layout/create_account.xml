@@ -94,7 +94,7 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="127dp"
-        android:backgroundTint="#79747E"
+        android:backgroundTint="#313131"
         android:padding="11dp"
         android:text="Confirm"
         android:textColor="@color/white"
