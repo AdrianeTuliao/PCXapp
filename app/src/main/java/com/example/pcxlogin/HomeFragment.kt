@@ -14,9 +14,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private val imageList = listOf(
-        R.drawable.rtx,    // Make sure these exist in res/drawable
-        R.drawable.intel,
-        R.drawable.ryzen
+        R.drawable.ad1,    // Make sure these exist in res/drawable
+        R.drawable.ad2,
+        R.drawable.ad3
     )
 
     private val sliderHandler = Handler(Looper.getMainLooper())

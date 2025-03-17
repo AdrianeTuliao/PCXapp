@@ -54,7 +54,9 @@ class ProductAdapter(private val products: List<Product>) :
                 productName = product.name,
                 productPrice = "₱${String.format("%,.2f", product.price)}",
                 productImageUrl = product.imageUrl,
-                stock = product.stocks
+                stock = product.stocks,
+                productId = product.id,
+                customerName = "John Doe"
             ) { quantity, totalPrice ->
                 Toast.makeText(context, "Bought $quantity for ₱$totalPrice", Toast.LENGTH_SHORT).show()
 
@@ -65,6 +67,7 @@ class ProductAdapter(private val products: List<Product>) :
 
             dialog.show()
         }
+
     }
 
     override fun getItemCount(): Int = products.size

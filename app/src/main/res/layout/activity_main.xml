@@ -82,7 +82,7 @@
             android:id="@+id/signin_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="105dp"
             android:backgroundTint="#313131"
             android:padding="11dp"
             android:text="Sign in"

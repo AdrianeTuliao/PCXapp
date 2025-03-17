@@ -6,15 +6,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog // Make sure this import exists
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DialogBuyNow(
     context: Context,
+    private val productId: Int,
     private val productName: String,
     private val productPrice: String,
     private val productImageUrl: String,
     private val stock: Int,
+    private val customerName: String,
     private val onBuyNowClicked: (quantity: Int, totalPrice: Double) -> Unit
 ) : BottomSheetDialog(context) {
 
@@ -68,9 +75,9 @@ class DialogBuyNow(
             }
         }
 
+        // ✅ This now opens the confirmation dialog first
         btnConfirm?.setOnClickListener {
-            onBuyNowClicked(quantity, basePrice * quantity)
-            dismiss()
+            showConfirmationDialog()
         }
 
         btnClose?.setOnClickListener {
@@ -78,6 +85,50 @@ class DialogBuyNow(
         }
 
         updateButtonsState(btnDecrease)
+    }
+
+    // ✅ Shows confirmation dialog before placing order
+    private fun showConfirmationDialog() {
+        AlertDialog.Builder(context)
+            .setTitle("Confirm Order")
+            .setMessage("Are you sure you want to place this order for $quantity item(s) totaling ₱${String.format("%,.2f", basePrice * quantity)}?")
+            .setPositiveButton("Yes") { dialog, _ ->
+                dialog.dismiss()
+                placeOrder() // Calls the actual order placing function if confirmed
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss() // Cancels the confirmation dialog
+            }
+            .show()
+    }
+
+    private fun placeOrder() {
+        val api = BuyNowClient.instance
+
+        val call = api.createOrder(
+            customerName = customerName,
+            items = productName,
+            total = basePrice * quantity,
+            quantity = quantity,
+            productId = productId
+        )
+
+        call.enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                val apiResponse = response.body()
+                if (apiResponse != null && apiResponse.success) {
+                    Toast.makeText(context, "Order placed successfully!", Toast.LENGTH_SHORT).show()
+                    onBuyNowClicked(quantity, basePrice * quantity)
+                    dismiss()
+                } else {
+                    Toast.makeText(context, apiResponse?.message ?: "Failed to place order.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun updatePrice(txtProductPrice: TextView) {

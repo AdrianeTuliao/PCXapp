@@ -36,66 +36,184 @@
                 android:nestedScrollingEnabled="true"/>
 
             <!-- Scrollable Content -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="0dp">
 
-                <!-- Intel Image -->
+                <!-- Image 1 -->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/intel"
-                    android:scaleType="fitXY"
+                    android:layout_marginBottom="6dp"
                     android:adjustViewBounds="true"
-                    android:layout_marginBottom="6dp"/>
+                    android:scaleType="fitXY"
+                    android:src="@drawable/post3" />
 
-                <!-- AMD Ryzen Image -->
+                <!-- Image 2 -->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ryzen"
-                    android:scaleType="fitXY"
+                    android:layout_marginBottom="6dp"
                     android:adjustViewBounds="true"
-                    android:layout_marginBottom="6dp"/>
-
-                <!-- MSI Image -->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/msi"
                     android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:layout_marginBottom="6dp"/>
-
-                <!-- ROG Image -->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/rog"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:layout_marginBottom="6dp"/>
-
-                <!-- Lenovo Image -->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/lenovo"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:layout_marginBottom="6dp"/>
-
-                <!-- Razer Image -->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/razer"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:layout_marginBottom="13dp"/>
+                    android:src="@drawable/post4" />
             </LinearLayout>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <!-- Motherboard Section -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MOTHERBOARDS"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="true">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <include layout="@layout/product_card_msimag" />
+                            <include layout="@layout/product_card_asrock" />
+                            <include layout="@layout/product_card_rogstrix" />
+                            <include layout="@layout/product_card_asusprime" />
+                            <include layout="@layout/product_card_rogstrix2" />
+                            <include layout="@layout/product_card_gigabyte" />
+                            <include layout="@layout/product_card_msib650" />
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <!-- Graphics Card Section -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GRAPHICS CARD"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="16dp" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="true">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <include layout="@layout/product_card_rtx4060" />
+                            <include layout="@layout/product_card_gtx1650" />
+                            <include layout="@layout/product_card_gigabyte4080" />
+                            <include layout="@layout/product_card_gigabyte6600" />
+                            <include layout="@layout/product_card_palit" />
+                            <include layout="@layout/product_card_gigabyterx570" />
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <!-- Image 3 -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/post5" />
+
+                <!-- Image 4 -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/post6" />
+            </LinearLayout>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <!-- Latest Products -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LATEST PRODUCTS"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <!-- Horizontal Scrollable Section -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="true">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <include layout="@layout/product_card_laptop" />
+                            <include layout="@layout/product_card_monitor" />
+                            <include layout="@layout/product_card_mouse" />
+                            <include layout="@layout/product_card_keyboard" />
+                            <include layout="@layout/product_card_laptop2" />
+                            <include layout="@layout/product_card_mouse2" />
+                            <include layout="@layout/product_card_monitor2" />
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
 
         </LinearLayout>
 

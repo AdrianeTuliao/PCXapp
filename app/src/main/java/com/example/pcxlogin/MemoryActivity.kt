@@ -19,10 +19,9 @@ class MemoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memory)
 
-        // Back Button Listener
         val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
-            // If you just want to go back to the previous activity
+
             finish()
         }
 
@@ -69,7 +68,7 @@ class MemoryActivity : AppCompatActivity() {
 
 
     private fun fetchProducts() {
-        val category = "Ram"
+        val category = "Memory"
         RetrofitClient.instance.getProductsByCategory(category)
             .enqueue(object : retrofit2.Callback<List<Product>> {
                 override fun onResponse(
