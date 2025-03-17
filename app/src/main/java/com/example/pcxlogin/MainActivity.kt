@@ -1,6 +1,5 @@
 package com.example.pcxlogin
 
-import LoginResponse
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         signInButton = findViewById(R.id.signin_btn)
         createAccButton = findViewById(R.id.createacc_btn)
 
-        // Sign In Button → Navigates to Home Page
         signInButton.setOnClickListener {
             val username = usernameInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -47,7 +45,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Create Account Button → Navigates to Create Account Page
         val createAccButton: Button = findViewById(R.id.createacc_btn)
         createAccButton.setOnClickListener {
             val intent = Intent(this, CreateAccount::class.java)

@@ -13,7 +13,7 @@ interface BuyNowApi {
         @Field("items") items: String,
         @Field("total") total: Double,
         @Field("quantity") quantity: Int,
-        @Field("product_id") productId: Int
+        @Field("product_id") productId: Int,
     ): Call<ApiResponse>
 }
 

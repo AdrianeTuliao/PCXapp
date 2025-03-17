@@ -21,6 +21,7 @@ class HomePage : AppCompatActivity() {
                 R.id.shop -> replaceFragment(ShopFragment())
                 R.id.favorites -> replaceFragment(FavoritesFragment())
                 R.id.home -> replaceFragment(HomeFragment())
+                R.id.orders -> replaceFragment(OrderFragment())
                 R.id.account -> replaceFragment(AccountFragment())
             }
             true

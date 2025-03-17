@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog // Make sure this import exists
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
@@ -75,7 +75,6 @@ class DialogBuyNow(
             }
         }
 
-        // ✅ This now opens the confirmation dialog first
         btnConfirm?.setOnClickListener {
             showConfirmationDialog()
         }
@@ -87,17 +86,16 @@ class DialogBuyNow(
         updateButtonsState(btnDecrease)
     }
 
-    // ✅ Shows confirmation dialog before placing order
     private fun showConfirmationDialog() {
         AlertDialog.Builder(context)
             .setTitle("Confirm Order")
             .setMessage("Are you sure you want to place this order for $quantity item(s) totaling ₱${String.format("%,.2f", basePrice * quantity)}?")
             .setPositiveButton("Yes") { dialog, _ ->
                 dialog.dismiss()
-                placeOrder() // Calls the actual order placing function if confirmed
+                placeOrder()
             }
             .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.dismiss() // Cancels the confirmation dialog
+                dialog.dismiss()
             }
             .show()
     }
