@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoritesFragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
     <TextView
+        android:id="@+id/tvNoFavorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FAVORITES"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+        android:text="NO FAVORITES YET"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:padding="8dp" />
 
-</FrameLayout>
+</LinearLayout>

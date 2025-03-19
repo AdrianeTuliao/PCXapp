@@ -24,6 +24,16 @@
             android:layout_marginBottom="16dp"
             android:src="@drawable/ic_launcher_foreground" />
 
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/productImage"
+            android:layout_alignEnd="@id/productImage"
+            android:background="@android:color/transparent"
+            android:src="@drawable/favorite_border"
+            android:contentDescription="Add to Favorites"/>
+
         <TextView
             android:id="@+id/productName"
             android:layout_width="match_parent"

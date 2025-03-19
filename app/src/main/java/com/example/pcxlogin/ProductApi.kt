@@ -8,4 +8,3 @@ interface ProductApi {
     @GET("get_products.php")
     fun getProductsByCategory(@Query("category") category: String): Call<List<Product>>
 }
-

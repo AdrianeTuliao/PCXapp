@@ -6,37 +6,40 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pcxlogin.databinding.FragmentOrderBinding
+import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OrderFragment : Fragment() {
 
-    private var _binding: FragmentOrderBinding? = null
-    private val binding get() = _binding!!
-
-    private lateinit var orderAdapter: OrderAdapter
+    private lateinit var ordersRecyclerView: RecyclerView
     private val orderList = mutableListOf<Order>()
+    private lateinit var orderAdapter: OrderAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentOrderBinding.inflate(inflater, container, false)
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_order, container, false)
 
-        binding.ordersRecyclerViewMemory.layoutManager = LinearLayoutManager(requireContext())
+        // Initialize RecyclerView
+        ordersRecyclerView = view.findViewById(R.id.ordersRecyclerViewMemory)
+        ordersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         orderAdapter = OrderAdapter(orderList)
-        binding.ordersRecyclerViewMemory.adapter = orderAdapter
+        ordersRecyclerView.adapter = orderAdapter
 
         fetchOrders()
 
-        return binding.root
+        return view
     }
 
     private fun fetchOrders() {
         val api = OrderClient.instance
 
-        api.getOrders().enqueue(object : retrofit2.Callback<List<Order>> {
-            override fun onResponse(call: Call<List<Order>>, response: retrofit2.Response<List<Order>>) {
+        api.getOrders().enqueue(object : Callback<List<Order>> {
+            override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         orderList.clear()
@@ -47,15 +50,9 @@ class OrderFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Order>>, t: Throwable) {
-                // Handle error
                 t.printStackTrace()
             }
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
-

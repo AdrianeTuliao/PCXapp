@@ -3,6 +3,7 @@ package com.example.pcxlogin
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pcxlogin.FetchFavorites.FavoritesFragment
 import com.example.pcxlogin.databinding.HomePageBinding
 
 class HomePage : AppCompatActivity() {

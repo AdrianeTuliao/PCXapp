@@ -1,5 +1,6 @@
 package com.example.pcxlogin
 
+import adapter.ProductAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pcxlogin.FetchFavorites.FavoritesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LaptopsActivity : AppCompatActivity() {
@@ -40,6 +42,12 @@ class LaptopsActivity : AppCompatActivity() {
                 }
                 R.id.favorites -> {
                     val intent = Intent(this, FavoritesFragment::class.java)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+                R.id.orders -> {
+                    val intent = Intent(this, OrderFragment::class.java)
                     startActivity(intent)
                     finish()
                     true
