@@ -35,7 +35,7 @@
 
     <LinearLayout
         android:id="@+id/form_layout"
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:orientation="vertical"
@@ -50,6 +50,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="Email address"
             android:inputType="text"
@@ -64,6 +65,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="Password"
             android:inputType="textPassword"
@@ -78,6 +80,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="Password confirmation*"
             android:inputType="textPassword"

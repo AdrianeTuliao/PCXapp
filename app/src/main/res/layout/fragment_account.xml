@@ -1,15 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ACCOUNT"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
-</FrameLayout>
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_corner"
+        android:elevation="4dp">
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile"
+            android:background="@drawable/circle_background"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"/>
+
+        <!-- User Info -->
+        <EditText
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Username"
+            android:inputType="text"
+            android:textColor="#313131"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/Email_input"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:hint="Email Address"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+        <!-- Contact Number -->
+        <EditText
+            android:id="@+id/contactnum_input"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:hint="Contact Number"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+        <!-- City -->
+        <EditText
+            android:id="@+id/city_input"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:hint="City"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#423B3B"
+            android:textColorHint="#A29B9B"
+            android:textSize="16sp" />
+
+        <!-- Change Password Button -->
+        <Button
+            android:id="@+id/changePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:backgroundTint="#313131"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="65dp"/>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</ScrollView>

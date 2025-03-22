@@ -132,8 +132,7 @@ class ProductAdapter(private val products: List<Product>) :
                     FavoriteItemLocal(productName, productPrice, productImage)
                 )
 
-                val request =
-                    AddFavoriteRequest(userId, productId, productName, productImage, productPrice)
+                val request = AddFavoriteRequest(userId, productId, productName, productImage, productPrice)
 
                 Log.d("FavoriteAPI", "Sending favorite request: $request")
 

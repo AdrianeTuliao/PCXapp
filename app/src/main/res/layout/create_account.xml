@@ -35,7 +35,7 @@
 
     <LinearLayout
         android:id="@+id/form_layout"
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:orientation="vertical"
@@ -52,6 +52,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="Username"
             android:inputType="text"
@@ -65,6 +66,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="Contact Number"
             android:inputType="number|phone"
@@ -79,6 +81,7 @@
             android:layout_width="329dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner"
             android:hint="City"
             android:inputType="text"

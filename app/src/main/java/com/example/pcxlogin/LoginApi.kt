@@ -17,6 +17,14 @@ interface LoginApi {
 data class LoginResponse(
     val success: Boolean,
     val message: String,
-    val user_id: Int? = null,
-    val username: String? = null
+    val user: User? = null
 )
+
+data class User(
+    val id: Int,
+    val username: String,
+    val email: String,
+    val contactNumber: String,
+    val city: String
+)
+

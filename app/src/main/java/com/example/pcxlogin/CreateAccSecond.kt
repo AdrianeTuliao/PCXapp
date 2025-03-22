@@ -62,8 +62,8 @@ class CreateAccSecond : AppCompatActivity() {
         email: String,
         password: String
     ) {
-        val service = RetrofitAccountsClient.instance
-        (AccountsApi::class.java)
+        val service = RetrofitAccountsClient.instance.create(AccountsApi::class.java)
+
         val call = service.createAccount(username, contactNum, city, email, password)
 
         call.enqueue(object : Callback<CreateAccountResponse> {

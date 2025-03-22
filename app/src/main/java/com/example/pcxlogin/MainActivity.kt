@@ -1,5 +1,6 @@
 package com.example.pcxlogin
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -65,24 +66,36 @@ class MainActivity : AppCompatActivity() {
                     android.util.Log.d("LOGIN_RESPONSE", loginResponse.toString())
 
                     if (loginResponse.success) {
-                        Toast.makeText(this@MainActivity, "Login Successful!", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this@MainActivity, "Login Successful!", Toast.LENGTH_SHORT).show()
+
+                        val user = loginResponse.user
+
+                        // Check if user is not null
+                        if (user != null) {
+                            val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+
+                            editor.putInt("user_id", user.id)
+                            editor.putString("username", user.username)
+                            editor.putString("email", user.email)
+                            editor.putString("contact", user.contactNumber)
+                            editor.putString("city", user.city)
+
+                            editor.apply()
+
+                            android.util.Log.d("SharedPrefSaved", "Saved user: ${user.username}, email: ${user.email}")
+                        } else {
+                            android.util.Log.e("LOGIN_ERROR", "User data is null in the response!")
+                        }
 
                         val intent = Intent(this@MainActivity, HomePage::class.java)
                         startActivity(intent)
                         finish()
-                    } else {
-                        Toast.makeText(this@MainActivity, loginResponse.message, Toast.LENGTH_SHORT)
-                            .show()
                     }
-                } else {
-                    val errorBody = response.errorBody()?.string()
-                    android.util.Log.e("LOGIN_ERROR", "Response Code: ${response.code()}")
-                    android.util.Log.e("LOGIN_ERROR", "Error Body: $errorBody")
 
                     Toast.makeText(
                         this@MainActivity,
-                        "Login failed! Try again.",
+                        "Incorrect email or password!.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
