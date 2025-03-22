@@ -15,6 +15,8 @@ import retrofit2.Response
 
 class CreateAccSecond : AppCompatActivity() {
 
+    private lateinit var emailInput: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.createacc_second)
@@ -29,10 +31,7 @@ class CreateAccSecond : AppCompatActivity() {
         val contactNum = intent.getStringExtra("contactNum") ?: ""
         val city = intent.getStringExtra("city") ?: ""
 
-        Log.d(
-            "CreateAccSecond",
-            "Received -> username: $username, contactNum: $contactNum, city: $city"
-        )
+        Log.d("CreateAccSecond", "Received -> username: $username, contactNum: $contactNum, city: $city")
 
         createAccountButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
@@ -75,10 +74,20 @@ class CreateAccSecond : AppCompatActivity() {
                     val createAccountResponse = response.body()
                     if (createAccountResponse != null) {
                         Log.d("CreateAccSecond", "Account creation success: ${createAccountResponse.message}")
-                        Toast.makeText(this@CreateAccSecond, createAccountResponse.message, Toast.LENGTH_SHORT).show()
 
-                        // Navigate to HomePage
-                        startActivity(Intent(this@CreateAccSecond, HomePage::class.java))
+                        // This stays on the same page and allows user to register into another email
+                        if (createAccountResponse.message.contains("Email already exists", ignoreCase = true)) {
+                            Toast.makeText(this@CreateAccSecond, "This email is already registered. Try another one.", Toast.LENGTH_SHORT).show()
+
+                            emailInput.text.clear()
+                            emailInput.requestFocus()
+
+                        } else {
+                            Toast.makeText(this@CreateAccSecond, "Account created successfully!", Toast.LENGTH_SHORT).show()
+                        }
+
+                        // Navigate to Login page
+                        startActivity(Intent(this@CreateAccSecond, MainActivity::class.java))
                         finish()
                     } else {
                         Toast.makeText(this@CreateAccSecond, "Empty response from server", Toast.LENGTH_SHORT).show()

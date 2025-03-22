@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var createAccButton: Button
     private lateinit var usernameInput: EditText
     private lateinit var passwordInput: EditText
+    private var isPasswordVisible = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,30 @@ class MainActivity : AppCompatActivity() {
         passwordInput = findViewById(R.id.password_input)
         signInButton = findViewById(R.id.signin_btn)
         createAccButton = findViewById(R.id.createacc_btn)
+        passwordInput.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0)
 
+
+        passwordInput.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+
+            if (isPasswordVisible) {
+                passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+
+            // 🔥 Set the eye icon (drawableEnd)
+            passwordInput.setCompoundDrawablesWithIntrinsicBounds(
+                0, 0,
+                if (isPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
+                0
+            )
+
+            passwordInput.setSelection(passwordInput.text.length)
+        }
+
+
+        // Sign in
         signInButton.setOnClickListener {
             val username = usernameInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -106,3 +132,5 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
+
+private fun EditText.setImageResource(i: Int) {}
