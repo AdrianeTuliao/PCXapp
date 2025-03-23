@@ -85,15 +85,37 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
+                <!-- NEW QUANTITY TEXTVIEW -->
+                <TextView
+                    android:id="@+id/productQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Quantity: 1"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/paymentStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:layout_marginTop="4dp"
                     android:text="Payment Status"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Cancel Order"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#313131"
+                    android:visibility="gone" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
