@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // Initialize views
         usernameInput = findViewById(R.id.username_input)
         passwordInput = findViewById(R.id.password_input)
         signInButton = findViewById(R.id.signin_btn)
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         passwordInput.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0)
 
 
+        // Password input
         passwordInput.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
 
@@ -49,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
 
-            // 🔥 Set the eye icon (drawableEnd)
             passwordInput.setCompoundDrawablesWithIntrinsicBounds(
                 0, 0,
                 if (isPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
@@ -79,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Login function
     private fun loginUser(username: String, password: String) {
         val call = LoginClient.instance.login(username, password)
 

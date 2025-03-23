@@ -1,16 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CartFragment">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@drawable/rounded_corner"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/imgCartProduct"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CART"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+        android:orientation="vertical"
+        android:paddingLeft="12dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvCartName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvCartPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₱0.00"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+
+        <!-- Quantity Selector -->
+        <LinearLayout
+            android:id="@+id/quantity_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btn_decrease"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#313131"
+                android:text="-"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/quantity_text"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:gravity="center"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_increase"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#313131"
+                android:text="+"
+                android:textSize="16sp"/>
+
+            <!-- Buy Now Button -->
+            <Button
+                android:id="@+id/btn_buy_now"
+                android:layout_width="105dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#636363"
+                android:text="Buy Now"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="30dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
