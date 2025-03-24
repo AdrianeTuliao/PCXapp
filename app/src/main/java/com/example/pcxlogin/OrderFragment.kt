@@ -2,6 +2,7 @@ package com.example.pcxlogin
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -122,13 +123,18 @@ class OrderFragment : Fragment() {
         api.cancelOrder(order.id, order.quantity, order.items)
             .enqueue(object : Callback<ApiRes> {
                 override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
+
+                    Log.d("CANCEL_ORDER", "Response Code: ${response.code()}")
+                    Log.d("CANCEL_ORDER", "Response Body: ${response.body()}")
+                    Log.d("CANCEL_ORDER", "Error Body: ${response.errorBody()?.string()}")
+
                     if (response.isSuccessful) {
                         Toast.makeText(
                             requireContext(),
                             "Order cancelled successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-                        fetchOrders() // Refresh orders after cancel
+                        fetchOrders()
                     } else {
                         Toast.makeText(
                             requireContext(),
