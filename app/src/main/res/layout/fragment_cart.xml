@@ -17,7 +17,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp" />
 
-    <!-- RecyclerView for Cart Items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCart"
         android:layout_width="match_parent"
@@ -25,16 +24,14 @@
         android:layout_weight="1"
         android:padding="8dp" />
 
-    <!-- Bottom bar: Total Price + Checkout Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:background="@color/white"
+        android:background="@drawable/top_outline"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- Select All Checkbox -->
         <CheckBox
             android:id="@+id/checkboxSelectAll"
             android:layout_width="wrap_content"

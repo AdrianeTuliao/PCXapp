@@ -1,6 +1,7 @@
 package com.example.pcxlogin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,23 +93,32 @@ class CartFragment : Fragment() {
     }
 
     private fun loadCartItems() {
-        CartClient.instance.fetchCartItems(1).enqueue(object : Callback<List<CartItem>> {
-            override fun onResponse(call: Call<List<CartItem>>, response: Response<List<CartItem>>) {
+        val userId = 1
+
+        CartClient.instance.fetchCartItems(userId).enqueue(object : Callback<CartResponse> {
+            override fun onResponse(call: Call<CartResponse>, response: Response<CartResponse>) {
                 if (response.isSuccessful) {
-                    cartItems.clear()
-                    cartItems.addAll(response.body() ?: emptyList())
-                    cartAdapter.updateCartItems(cartItems)
-                    updateTotalPrice()
+                    Log.d("CartFragment", "API Response: ${response.body()}") // Debug the response
+                    response.body()?.let {
+                        cartItems.clear()
+                        cartItems.addAll(it.cart_items)  // Ensure items are added
+                        cartAdapter.notifyDataSetChanged() // Refresh RecyclerView
+                    }
                 } else {
-                    Toast.makeText(requireContext(), "Failed to load cart items", Toast.LENGTH_SHORT).show()
+                    Log.e("CartFragment", "API Error: ${response.errorBody()?.string()}")
                 }
             }
 
-            override fun onFailure(call: Call<List<CartItem>>, t: Throwable) {
-                Toast.makeText(requireContext(), "Error loading cart", Toast.LENGTH_SHORT).show()
+
+
+            override fun onFailure(call: Call<CartResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error loading cart: ${t.message}", Toast.LENGTH_SHORT).show()
+                t.printStackTrace()
             }
+
         })
     }
+
 
     private fun updateTotalPrice() {
         val selectedItems = cartAdapter.getSelectedItems()

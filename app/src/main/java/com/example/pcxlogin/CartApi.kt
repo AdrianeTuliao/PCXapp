@@ -1,5 +1,6 @@
 package com.example.pcxlogin
 
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -22,7 +23,7 @@ interface CartApi {
     @POST("fetch_cart.php")
     fun fetchCartItems(
         @Field("user_id") userId: Int
-    ): Call<List<CartItem>>
+    ): Call<CartResponse>
 
     @FormUrlEncoded
     @POST("remove_from_cart.php")
@@ -41,17 +42,24 @@ interface CartApi {
 }
 
 data class CartItem(
-    val productId: Int,
-    val productName: String,
-    val productPrice: Double,
-    val productImageUrl: String,
-    var quantity: Int,
-    val productStock: Int,
+    @SerializedName("product_id") val productId: Int,
+    @SerializedName("product_name") val productName: String,
+    @SerializedName("product_price") val productPrice: Double,
+    @SerializedName("product_image_url") val productImageUrl: String,
+    @SerializedName("quantity") var quantity: Int,
+    @SerializedName("product_stock") val productStock: Int,
     var isSelected: Boolean = false
 )
+
 data class ApiRes1(
     val success: Boolean,
     val message: String
 )
+
+data class CartResponse(
+    val success: Boolean,
+    val cart_items: List<CartItem>
+)
+
 
 
