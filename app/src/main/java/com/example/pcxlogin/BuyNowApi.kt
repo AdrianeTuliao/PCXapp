@@ -25,3 +25,4 @@ data class ApiResponse(
     val imageUrl: String,
     val stock: Int
 )
+

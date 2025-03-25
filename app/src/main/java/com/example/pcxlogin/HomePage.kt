@@ -14,9 +14,10 @@ class HomePage : AppCompatActivity() {
         binding = HomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set default fragment
+        // Default fragment when app opens
         replaceFragment(HomeFragment())
 
+        // Bottom Nav handling
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.shop -> replaceFragment(ShopFragment())
@@ -27,7 +28,13 @@ class HomePage : AppCompatActivity() {
             }
             true
         }
+
+        // ✅ Cart Icon handling
+        binding.sCart.setOnClickListener {
+            replaceFragment(CartFragment()) // Make sure you import your CartFragment
+        }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
