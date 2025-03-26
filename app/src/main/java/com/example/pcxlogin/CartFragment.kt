@@ -62,9 +62,10 @@ class CartFragment : Fragment() {
 
     private fun setupRecyclerView() {
         cartAdapter = CartAdapter(
+            context = requireContext(),
             cartItems = cartItems,
             onQuantityChange = { updatedItem ->
-                // API call to update quantity
+                // ✅ Use cartApi instance
                 CartClient.instance.updateCartQuantity(
                     userId = 1,
                     productId = updatedItem.productId,
@@ -85,12 +86,14 @@ class CartFragment : Fragment() {
             onItemSelectionChange = {
                 updateTotalPrice()
                 syncSelectAllCheckbox()
-            }
+            },
+            cartApi = CartClient.instance  // ✅ Pass cartApi instance here
         )
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = cartAdapter
     }
+
 
     private fun loadCartItems() {
         val userId = 1
@@ -128,14 +131,21 @@ class CartFragment : Fragment() {
     }
 
     private fun syncSelectAllCheckbox() {
-        selectAllCheckbox.setOnCheckedChangeListener(null) // Avoid recursion
-        val allSelected = cartItems.isNotEmpty() && cartItems.all { it.isSelected }
-        selectAllCheckbox.isChecked = allSelected
-        selectAllCheckbox.setOnCheckedChangeListener { _, isChecked ->
-            cartAdapter.selectAllItems(isChecked)
-            updateTotalPrice()
+        if (cartItems.isNullOrEmpty()) return // ✅ Prevent null or empty list crash
+
+        val allSelected = cartItems.all { it.isSelected }
+
+        if (selectAllCheckbox.isChecked != allSelected) {
+            selectAllCheckbox.setOnCheckedChangeListener(null)
+            selectAllCheckbox.isChecked = allSelected
+            selectAllCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                cartAdapter.selectAllItems(isChecked)
+                updateTotalPrice()
+            }
         }
     }
+
+
 
     private fun proceedToCheckout(selectedItems: List<CartItem>) {
         // TODO: Replace with your own logic, navigate to checkout or confirm purchase

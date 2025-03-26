@@ -3,6 +3,7 @@ package com.example.pcxlogin
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -112,9 +113,21 @@ class MainActivity : AppCompatActivity() {
                             editor.apply()
 
                             android.util.Log.d("SharedPrefSaved", "Saved user: ${user.username}, email: ${user.email}")
+                            android.util.Log.d("SharedPrefSaved", "Saved User ID: ${user.id}")
                         } else {
                             android.util.Log.e("LOGIN_ERROR", "User data is null in the response!")
                         }
+
+                        if (loginResponse.success && user != null) {
+                            val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+
+                            editor.putInt("user_id", user.id)
+                            editor.apply()
+
+                            Log.d("SharedPreferences", "User ID saved: ${user.id}") // Debugging Log
+                        }
+
 
                         val intent = Intent(this@MainActivity, HomePage::class.java)
                         startActivity(intent)

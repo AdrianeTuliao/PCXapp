@@ -42,6 +42,7 @@ interface CartApi {
 }
 
 data class CartItem(
+    @SerializedName("user_id") val userId: Int,
     @SerializedName("product_id") val productId: Int,
     @SerializedName("product_name") val productName: String,
     @SerializedName("product_price") val productPrice: Double,
