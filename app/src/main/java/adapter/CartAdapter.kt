@@ -111,7 +111,7 @@ class CartAdapter(
 
     private fun removeFromCart(item: CartItem, position: Int) {
         val sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        val userId = sharedPreferences.getInt("user_id", 0) // Default to 0 if not found
+        val userId = sharedPreferences.getInt("user_id", 0)
 
         if (userId == 0) {
             Log.e("CartAdapter", "Error: userId is 0! Make sure it's retrieved properly.")

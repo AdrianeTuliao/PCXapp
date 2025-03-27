@@ -14,7 +14,6 @@ class HomePage : AppCompatActivity() {
         binding = HomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Default fragment when app opens
         replaceFragment(HomeFragment())
 
         // Bottom Nav handling
@@ -29,9 +28,8 @@ class HomePage : AppCompatActivity() {
             true
         }
 
-        // ✅ Cart Icon handling
         binding.sCart.setOnClickListener {
-            replaceFragment(CartFragment()) // Make sure you import your CartFragment
+            replaceFragment(CartFragment())
         }
     }
 
