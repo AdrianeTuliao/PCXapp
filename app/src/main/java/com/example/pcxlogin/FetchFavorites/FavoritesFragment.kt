@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pcxlogin.FavoritesAdapter
@@ -28,7 +29,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
         recyclerView = view.findViewById(R.id.recyclerViewFavorites)
 
-        favoritesAdapter = FavoritesAdapter(favoriteItems)
+        favoritesAdapter = FavoritesAdapter(favoriteItems) { selectedItem ->
+            navigateToProduct(selectedItem) // Navigate to the product when clicked
+        }
+
         recyclerView.adapter = favoritesAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -53,7 +57,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
                     favoriteItems.clear()
 
                     val responseBody = response.body()
-                    Log.d("FavoritesDebug", "Full API Response: $responseBody") // Debug API response
+                    Log.d("FavoritesDebug", "Full API Response: $responseBody")
 
                     responseBody?.let {
                         for (item in it) {
@@ -68,11 +72,23 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
                 }
             }
 
-
-
             override fun onFailure(call: Call<List<FavoriteItemResponse>>, t: Throwable) {
                 Log.e("FavoritesDebug", "Failed to fetch favorites: ${t.message}")
             }
         })
     }
+
+    private fun navigateToProduct(selectedItem: FavoriteItemResponse) {
+        val bundle = Bundle().apply {
+            putInt("product_id", selectedItem.productId)
+            putString("product_name", selectedItem.productName)
+            putString("image_url", selectedItem.imageUrl)
+            putString("price", selectedItem.price.toString())
+        }
+
+        findNavController().navigate(R.id.productDetailsFragment, bundle)
+
+    }
+
+
 }
