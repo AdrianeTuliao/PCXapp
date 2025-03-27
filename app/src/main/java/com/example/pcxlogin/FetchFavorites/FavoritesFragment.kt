@@ -1,6 +1,7 @@
 package com.example.pcxlogin.FetchFavorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,13 +17,11 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var favoritesAdapter: FavoritesAdapter
-
     private val favoriteItems = mutableListOf<FavoriteItemResponse>()
 
     companion object {
         val favoriteItem = mutableListOf<FavoriteItemLocal>()
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,13 +32,17 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         recyclerView.adapter = favoritesAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        Log.d("FavoritesDebug", "Fragment View Created. Fetching favorites...")
         fetchFavoritesFromApi()
     }
 
     private fun fetchFavoritesFromApi() {
         val fetchFavApi = FavoritesClient1.fetchFavApi
+        val userId = 1  // You may want to dynamically get this ID
 
-        val call1 = fetchFavApi.getFavorites(userId = 1)
+        Log.d("FavoritesDebug", "Fetching favorites for user ID: $userId")
+
+        val call1 = fetchFavApi.getFavorites(userId)
 
         call1.enqueue(object : Callback<List<FavoriteItemResponse>> {
             override fun onResponse(
@@ -48,17 +51,27 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             ) {
                 if (response.isSuccessful) {
                     favoriteItems.clear()
-                    response.body()?.let {
+
+                    val responseBody = response.body()
+                    Log.d("FavoritesDebug", "Full API Response: $responseBody") // Debug API response
+
+                    responseBody?.let {
+                        for (item in it) {
+                            Log.d("FavoritesDebug", "Item: ${item.productName}, Image URL: ${item.imageUrl}")
+                        }
                         favoriteItems.addAll(it)
                     }
+
                     favoritesAdapter.notifyDataSetChanged()
                 } else {
-                    println("Unsuccessful response: ${response.errorBody()?.string()}")
+                    Log.e("FavoritesDebug", "Unsuccessful response: ${response.errorBody()?.string()}")
                 }
             }
 
+
+
             override fun onFailure(call: Call<List<FavoriteItemResponse>>, t: Throwable) {
-                println("Failed to fetch favorites: ${t.message}")
+                Log.e("FavoritesDebug", "Failed to fetch favorites: ${t.message}")
             }
         })
     }

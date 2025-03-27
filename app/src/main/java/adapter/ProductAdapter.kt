@@ -180,8 +180,7 @@ class ProductAdapter(private val products: List<Product>) :
                         FavoriteItemLocal(productName, productPrice, productImage)
                     )
 
-                    val request =
-                        AddFavoriteRequest(
+                    val request = AddFavoriteRequest(
                             userId,
                             productId,
                             productName,
@@ -189,37 +188,27 @@ class ProductAdapter(private val products: List<Product>) :
                             productPrice
                         )
 
+                    Log.d("FavoriteAPI", "Sending request: $request")
+
                     FavoritesClient.favoritesApi.addFavorite(request)
                         .enqueue(object : Callback<ApiResponse> {
-                            override fun onResponse(
-                                call: Call<ApiResponse>,
-                                response: Response<ApiResponse>
-                            ) {
-                                if (response.isSuccessful && response.body()?.success == true) {
-                                    Toast.makeText(
-                                        context,
-                                        "Added to favorites!",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
+                            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                                val body = response.body()
+                                if (body != null && body.success) {
+                                    Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show()
                                 } else {
-                                    Toast.makeText(
-                                        context,
-                                        "Failed to add favorite.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Log.e(
-                                        "FavoriteAPI",
-                                        "Failed: ${response.errorBody()?.string()}"
-                                    )
+                                    Log.e("FavoriteAPI", "Failed: ${response.errorBody()?.string()}")
+                                    Toast.makeText(context, "Failed to add favorite.", Toast.LENGTH_SHORT).show()
                                 }
                             }
 
                             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                                 Log.e("FavoriteAPI", "Failed to add favorite: ${t.message}")
-                                Toast.makeText(context, "Failed to add ${product.name} to favorites", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Failed to add to favorites", Toast.LENGTH_SHORT).show()
                             }
                         })
+
+
                 } else {
                     FavoritesFragment.favoriteItem.removeIf { it.name == productName }
                     Log.d("FavoriteButton", "Removed from local favorites: $productName")
@@ -230,6 +219,8 @@ class ProductAdapter(private val products: List<Product>) :
 
 fun getUserIdFromSession(context: Context): Int {
     val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+    val userId = getUserIdFromSession(context)
+    Log.d("FavoriteAPI", "Retrieved user_id: $userId")
     return sharedPreferences.getInt("user_id", -1) // Default to -1 if not found
 }
 

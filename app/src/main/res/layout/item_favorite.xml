@@ -37,6 +37,16 @@
             android:text="₱0.00"
             android:textSize="16sp"
             android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnViewFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:padding="8dp"
+            android:backgroundTint="#313131"
+            android:textColor="@android:color/white"/>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.pcxlogin.FetchFavorites
 
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,9 +10,16 @@ interface FetchFavApi {
     fun getFavorites(@Query("user_id") userId: Int): Call<List<FavoriteItemResponse>>
 }
 
-data class FavoriteItemResponse(
-    val product_id: Int,
-    val product_name: String,
-    val imageUrl: String,
-    val price: Double
+data class FavoriteItemLocal(
+    val name: String,
+    val price: Double,
+    val imageUrl: String
 )
+
+data class FavoriteItemResponse(
+    @SerializedName("product_id") val productId: Int,
+    @SerializedName("product_name") val productName: String,
+    @SerializedName("product_image") val imageUrl: String,
+    @SerializedName("price") val price: Double
+)
+

@@ -1,5 +1,6 @@
 package com.example.pcxlogin
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,14 +28,19 @@ class FavoritesAdapter(private val favoriteItems: List<FavoriteItemResponse>) :
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val item = favoriteItems[position]
 
-        holder.tvFavoriteName.text = item.product_name
-        holder.tvFavoritePrice.text = "₱${item.price}"
-        holder.imgFavoriteProduct.setImageResource(R.drawable.ic_launcher_foreground)
+        Log.d("FavoritesDebug", "Binding item: ${item.productName}, Image URL: ${item.imageUrl}")
 
-         Glide.with(holder.itemView.context)
-             .load(item.imageUrl)
-             .into(holder.imgFavoriteProduct)
+        holder.tvFavoriteName.text = item.productName
+        holder.tvFavoritePrice.text = "₱${item.price}"
+
+        Glide.with(holder.itemView.context)
+            .load(item.imageUrl)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .error(R.drawable.ic_eye_closed) // Show this image if loading fails
+            .into(holder.imgFavoriteProduct)
     }
+
+
 
     override fun getItemCount(): Int = favoriteItems.size
 }
