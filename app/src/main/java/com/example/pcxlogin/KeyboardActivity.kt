@@ -30,41 +30,6 @@ class KeyboardActivity : AppCompatActivity() {
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
-        // BottomNav
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.selectedItemId = R.id.shop
-
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.home -> {
-                    val intent = Intent(this, HomePage::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.favorites -> {
-                    val intent = Intent(this, FavoritesFragment::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.orders -> {
-                    val intent = Intent(this, OrderFragment::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.account -> {
-                    val intent = Intent(this, AccountFragment::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                else -> false
-            }
-        }
-
-
         recyclerView = findViewById(R.id.recyclerViewKeyboard)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ProductAdapter(productList)
