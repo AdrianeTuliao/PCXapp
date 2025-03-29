@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="View"
             android:padding="8dp"
+            android:layout_marginLeft="150dp"
             android:backgroundTint="#313131"
             android:textColor="@android:color/white"/>
 

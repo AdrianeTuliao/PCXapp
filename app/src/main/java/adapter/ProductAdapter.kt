@@ -20,7 +20,6 @@ import com.example.pcxlogin.ApiResponse
 import com.example.pcxlogin.CartClient
 import com.example.pcxlogin.CartItem
 import com.example.pcxlogin.DialogBuyNow
-import com.example.pcxlogin.FetchFavorites.FavoritesFragment
 import com.example.pcxlogin.Product
 import com.example.pcxlogin.R
 import retrofit2.Call
@@ -55,12 +54,10 @@ class ProductAdapter(private val products: List<Product>) :
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
 
-        // Set button state based on stock
         holder.buyNowButton.isEnabled = product.stocks > 0
         holder.buyNowButton.text = if (product.stocks > 0) "Buy Now" else "Out of Stock"
 
-        val priceValue = product.price
-        val formattedPrice = String.format("%,.2f", priceValue)
+        val formattedPrice = String.format("%,.2f", product.price)
 
         holder.nameText.text = product.name
         holder.descriptionText.text = product.description
@@ -73,7 +70,6 @@ class ProductAdapter(private val products: List<Product>) :
 
         val context = holder.itemView.context
 
-        // Buy now
         holder.buyNowButton.setOnClickListener {
             val dialog = DialogBuyNow(
                 context = context,
@@ -82,24 +78,17 @@ class ProductAdapter(private val products: List<Product>) :
                 productImageUrl = product.imageUrl,
                 stock = product.stocks,
                 productId = product.id,
-                customerName = "John Doe" // Can be change to customer name
+                customerName = "John Doe"
             ) { quantity, totalPrice ->
-                Toast.makeText(context, "Bought $quantity for ₱$totalPrice", Toast.LENGTH_SHORT)
-                    .show()
-
-                // Decrease local stock and refresh the item view
+                Toast.makeText(context, "Bought $quantity for ₱$totalPrice", Toast.LENGTH_SHORT).show()
                 product.stocks -= quantity
                 notifyItemChanged(holder.adapterPosition)
             }
-
             dialog.show()
         }
 
-        // Add to cart
         holder.cartButton.setOnClickListener {
             val userId = getUserIdFromSession(context)
-            val productName = product.name
-
             CartClient.instance.addToCart(
                 userId = userId,
                 productId = product.id,
@@ -108,121 +97,69 @@ class ProductAdapter(private val products: List<Product>) :
                 productImageUrl = product.imageUrl,
                 quantity = 1,
                 productStock = product.stocks
-
             ).enqueue(object : Callback<ApiRes1> {
                 override fun onResponse(call: Call<ApiRes1>, response: Response<ApiRes1>) {
                     if (response.isSuccessful) {
-                        val body = response.body()
-                        if (body != null) {
-                            Toast.makeText(context, "${product.name} added to cart!", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Log.e("CartAPI", "Response body is null")
-                        }
+                        Toast.makeText(context, "${product.name} added to cart!", Toast.LENGTH_SHORT).show()
                     } else {
-                        val errorBody = response.errorBody()?.string()
-                        Log.e("CartAPI", "Failed to add: $errorBody")
                         Toast.makeText(context, "Failed to add ${product.name} to cart", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ApiRes1>, t: Throwable) {
-                    Log.e("CartAPI", "Error adding to cart: ${t.message}")
                     Toast.makeText(context, "Failed to add ${product.name} to cart", Toast.LENGTH_SHORT).show()
                 }
-
-
             })
         }
 
+        val isFavorite = favoriteStates[position] ?: false
+        holder.favoriteButton.setImageResource(
+            if (isFavorite) R.drawable.favorite_filled else R.drawable.favorite_border
+        )
 
-
-        // Fav button
-            val isFavorite = favoriteStates[position] ?: false
-
+        holder.favoriteButton.setOnClickListener {
+            val newState = !(favoriteStates[position] ?: false)
+            favoriteStates[position] = newState
             holder.favoriteButton.setImageResource(
-                if (isFavorite) R.drawable.favorite_filled else R.drawable.favorite_border
+                if (newState) R.drawable.favorite_filled else R.drawable.favorite_border
             )
 
-            holder.favoriteButton.setOnClickListener {
-                val newState = !(favoriteStates[position] ?: false)
-                favoriteStates[position] = newState
-
-                holder.favoriteButton.setImageResource(
-                    if (newState) R.drawable.favorite_filled else R.drawable.favorite_border
-                )
-
-                // Button animation
-                holder.favoriteButton.animate()
-                    .scaleX(1.5f).scaleY(1.5f)
-                    .rotationBy(20f)
-                    .setDuration(150)
-                    .withEndAction {
-                        holder.favoriteButton.animate()
-                            .scaleX(0.8f).scaleY(0.8f)
-                            .rotationBy(-40f)
-                            .setDuration(150)
-                            .withEndAction {
-                                holder.favoriteButton.animate()
-                                    .scaleX(1f).scaleY(1f)
-                                    .rotationBy(20f)
-                                    .setDuration(150)
-                            }
-                    }
-
-                val productName = product.name
-                val productPrice = product.price
-                val productImage = product.imageUrl
-                val userId = 1
-                val productId = product.id
-
-                if (newState) {
-                    FavoritesFragment.favoriteItem.add(
-                        FavoriteItemLocal(productName, productPrice, productImage)
-                    )
-
-                    val request = AddFavoriteRequest(
-                            userId,
-                            productId,
-                            productName,
-                            productImage,
-                            productPrice
-                        )
-
-                    Log.d("FavoriteAPI", "Sending request: $request")
-
-                    FavoritesClient.favoritesApi.addFavorite(request)
-                        .enqueue(object : Callback<ApiResponse> {
-                            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                                val body = response.body()
-                                if (body != null && body.success) {
-                                    Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show()
-                                } else {
-                                    Log.e("FavoriteAPI", "Failed: ${response.errorBody()?.string()}")
-                                    Toast.makeText(context, "Failed to add favorite.", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-
-                            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                                Log.e("FavoriteAPI", "Failed to add favorite: ${t.message}")
-                                Toast.makeText(context, "Failed to add to favorites", Toast.LENGTH_SHORT).show()
-                            }
-                        })
-
-
-                } else {
-                    FavoritesFragment.favoriteItem.removeIf { it.name == productName }
-                    Log.d("FavoriteButton", "Removed from local favorites: $productName")
+            holder.favoriteButton.animate()
+                .scaleX(1.5f).scaleY(1.5f)
+                .rotationBy(20f)
+                .setDuration(150)
+                .withEndAction {
+                    holder.favoriteButton.animate()
+                        .scaleX(0.8f).scaleY(0.8f)
+                        .rotationBy(-40f)
+                        .setDuration(150)
+                        .withEndAction {
+                            holder.favoriteButton.animate()
+                                .scaleX(1f).scaleY(1f)
+                                .rotationBy(20f)
+                                .setDuration(150)
+                        }
                 }
+
+            val userId = getUserIdFromSession(context)
+            val productId = product.id
+
+            if (newState) {
+                val request = AddFavoriteRequest(userId, productId, product.name, product.imageUrl, product.price)
+                FavoritesClient.favoritesApi.addFavorite(request).enqueue(object : Callback<ApiResponse> {
+                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                        Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show()
+                    }
+                    override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                        Toast.makeText(context, "Failed to add to favorites", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
         }
     }
+}
 
 fun getUserIdFromSession(context: Context): Int {
     val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-    val userId = getUserIdFromSession(context)
-    Log.d("FavoriteAPI", "Retrieved user_id: $userId")
-    return sharedPreferences.getInt("user_id", -1) // Default to -1 if not found
+    return sharedPreferences.getInt("user_id", -1)
 }
-
-
-
