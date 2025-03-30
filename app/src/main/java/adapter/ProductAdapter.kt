@@ -1,7 +1,6 @@
 package adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pcxlogin.AddFavorites.FavoritesClient
 import com.example.pcxlogin.AddFavorites.AddFavoriteRequest
-import com.example.pcxlogin.AddFavorites.FavoriteItemLocal
 import com.example.pcxlogin.ApiRes1
 import com.example.pcxlogin.ApiResponse
 import com.example.pcxlogin.CartClient
-import com.example.pcxlogin.CartItem
 import com.example.pcxlogin.DialogBuyNow
 import com.example.pcxlogin.Product
 import com.example.pcxlogin.R
@@ -145,7 +142,7 @@ class ProductAdapter(private val products: List<Product>) :
             val productId = product.id
 
             if (newState) {
-                val request = AddFavoriteRequest(userId, productId, product.name, product.imageUrl, product.price)
+                val request = AddFavoriteRequest(userId, productId, product.name, product.imageUrl, product.price, product.stocks)
                 FavoritesClient.favoritesApi.addFavorite(request).enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                         Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show()

@@ -13,14 +13,15 @@ interface FetchFavApi {
 data class FavoriteItemLocal(
     val name: String,
     val price: Double,
-    val imageUrl: String
+    val imageUrl: String,
+    val stocks: Int
 )
 
 data class FavoriteItemResponse(
     @SerializedName("product_id") val productId: Int,
     @SerializedName("product_name") val productName: String,
     @SerializedName("product_image") val imageUrl: String,
-    @SerializedName("stock") val stock: Int,
+    @SerializedName("stocks") val stocks: Int,
     @SerializedName("price") val price: Double
 )
 

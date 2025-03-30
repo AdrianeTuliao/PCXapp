@@ -21,7 +21,8 @@ data class AddFavoriteRequest(
     @SerializedName("product_id") val productId: Int,
     @SerializedName("product_name") val productName: String,
     @SerializedName("imageUrl") val imageUrl: String,
-    @SerializedName("price") val price: Double
+    @SerializedName("price") val price: Double,
+    @SerializedName("stocks") val stocks: Int
 )
 
 
@@ -35,7 +36,8 @@ data class FavoriteItemResponse(
     @SerializedName("product_id") val productId: Int,
     @SerializedName("product_name") val productName: String,
     @SerializedName("product_image") val imageUrl: String,
-    @SerializedName("price") val price: Double
+    @SerializedName("price") val price: Double,
+    @SerializedName("stocks") val stocks: Int
 )
 
 
