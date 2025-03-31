@@ -8,3 +8,7 @@ interface ProductApi {
     @GET("get_products.php")
     fun getProductsByCategory(@Query("category") category: String): Call<List<Product>>
 }
+interface ProductApi1 {
+    @GET("fetch_products.php")
+    fun getProducts(): Call<List<Product>>
+}

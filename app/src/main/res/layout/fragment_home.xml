@@ -99,8 +99,7 @@
                             <include layout="@layout/product_card_rogstrix" />
                             <include layout="@layout/product_card_asusprime" />
                             <include layout="@layout/product_card_rogstrix2" />
-                            <include layout="@layout/product_card_gigabyte" />
-                            <include layout="@layout/product_card_msib650" />
+
 
                         </LinearLayout>
 
@@ -129,9 +128,8 @@
                             <include layout="@layout/product_card_rtx4060" />
                             <include layout="@layout/product_card_gtx1650" />
                             <include layout="@layout/product_card_gigabyte4080" />
-                            <include layout="@layout/product_card_gigabyte6600" />
-                            <include layout="@layout/product_card_palit" />
-                            <include layout="@layout/product_card_gigabyterx570" />
+                            <include layout="@layout/product_card_rtx4070" />
+                            <include layout="@layout/product_card_gtx1650d6" />
                         </LinearLayout>
 
                     </HorizontalScrollView>
