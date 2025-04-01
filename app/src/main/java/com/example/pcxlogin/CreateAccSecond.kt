@@ -2,6 +2,7 @@ package com.example.pcxlogin
 
 import AccountsApi
 import CreateAccountResponse
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,66 +25,92 @@ class CreateAccSecond : AppCompatActivity() {
     private var isConfirmPasswordVisible = false
 
 
-
-    // Still needs to be fixed
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.createacc_second)
 
         // Initialize views
-        val emailInput = findViewById<EditText>(R.id.Email_input)
-        val passwordInput = findViewById<EditText>(R.id.password_input)
-        val passconInput = findViewById<EditText>(R.id.passcon_input)
+        emailInput = findViewById(R.id.Email_input)
+        passwordInput = findViewById(R.id.password_input)
+        passconInput = findViewById(R.id.passcon_input)
         val createAccountButton = findViewById<Button>(R.id.create_btn)
+
+        // Set inputType to password (by default, hide the password)
+        passwordInput.inputType =
+            android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+        passconInput.inputType =
+            android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        // Set initial eye icon to closed for both password fields
         passwordInput.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0)
         passconInput.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0)
 
-        // Retrieve data passed from first screen
+        // Retrieve data passed from the first screen
         val username = intent.getStringExtra("username") ?: ""
         val contactNum = intent.getStringExtra("contactNum") ?: ""
         val city = intent.getStringExtra("city") ?: ""
 
-        Log.d("CreateAccSecond", "Received -> username: $username, contactNum: $contactNum, city: $city")
+        Log.d(
+            "CreateAccSecond",
+            "Received -> username: $username, contactNum: $contactNum, city: $city"
+        )
 
         // Progress bar 100
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
-        progressBar.progress = 100 // full (Step 2 of 2)
+        progressBar.progress = 100
 
-        // Password input
-        passwordInput.setOnClickListener {
-            isPasswordVisible = !isPasswordVisible
+        // Handle touch on the password field to toggle visibility
+        passwordInput.setOnTouchListener { v, event ->
+            if (event.action == android.view.MotionEvent.ACTION_UP) {
+                // Get the drawable for the "eye" icon
+                val drawableRight = passwordInput.compoundDrawables[2]
+                if (event.rawX >= (passwordInput.right - drawableRight.bounds.width())) {
+                    // Toggle visibility
+                    isPasswordVisible = !isPasswordVisible
+                    passwordInput.inputType = if (isPasswordVisible) {
+                        android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    } else {
+                        android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    }
 
-            if (isPasswordVisible) {
-                passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            } else {
-                passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    passwordInput.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0,
+                        if (isPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
+                        0
+                    )
+
+                    passwordInput.setSelection(passwordInput.text.length) // Keep cursor at the end
+                    return@setOnTouchListener true
+                }
             }
-
-            passwordInput.setCompoundDrawablesWithIntrinsicBounds(
-                0, 0,
-                if (isPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
-                0
-            )
-
-            passwordInput.setSelection(passwordInput.text.length)
+            return@setOnTouchListener false
         }
 
-        passconInput.setOnClickListener {
-            isConfirmPasswordVisible = !isConfirmPasswordVisible
+        passconInput.setOnTouchListener { v, event ->
+            if (event.action == android.view.MotionEvent.ACTION_UP) {
+                // Get the drawable for the "eye" icon
+                val drawableRight = passconInput.compoundDrawables[2]
+                if (event.rawX >= (passconInput.right - drawableRight.bounds.width())) {
+                    // Toggle visibility
+                    isConfirmPasswordVisible = !isConfirmPasswordVisible
+                    passconInput.inputType = if (isConfirmPasswordVisible) {
+                        android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    } else {
+                        android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    }
 
-            if (isConfirmPasswordVisible) {
-                passconInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            } else {
-                passconInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    passconInput.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0,
+                        if (isConfirmPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
+                        0
+                    )
+
+                    passconInput.setSelection(passconInput.text.length) // Keep cursor at the end
+                    return@setOnTouchListener true
+                }
             }
-
-            passconInput.setCompoundDrawablesWithIntrinsicBounds(
-                0, 0,
-                if (isConfirmPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_closed,
-                0
-            )
-
-            passconInput.setSelection(passconInput.text.length)
+            return@setOnTouchListener false
         }
 
         // Create account button
@@ -160,11 +187,4 @@ class CreateAccSecond : AppCompatActivity() {
             }
         })
     }
-
 }
-
-
-
-
-
-
