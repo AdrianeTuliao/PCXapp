@@ -50,7 +50,7 @@ class AccountFragment : Fragment() {
 
         // Set up Retrofit
         retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.18.127/PCXadmin/")  // Replace with your actual API base URL
+            .baseUrl("http://192.168.18.127/PCXadmin/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -115,15 +115,13 @@ class AccountFragment : Fragment() {
         eyeIconConfirmPassword.setOnClickListener {
             if (isConfirmPasswordVisible) {
                 confirmPasswordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                eyeIconConfirmPassword.setImageResource(R.drawable.ic_eye_closed) // Eye Off icon
-            } else {
+                eyeIconConfirmPassword.setImageResource(R.drawable.ic_eye_closed)
                 confirmPasswordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                eyeIconConfirmPassword.setImageResource(R.drawable.ic_eye_open) // Eye On icon
+                eyeIconConfirmPassword.setImageResource(R.drawable.ic_eye_open)
             }
             isConfirmPasswordVisible = !isConfirmPasswordVisible
         }
 
-        // Set click listener for the submit button in the dialog
         submitPasswordChange.setOnClickListener {
             val newPassword = newPasswordInput.text.toString()
             val confirmPassword = confirmPasswordInput.text.toString()
@@ -147,7 +145,6 @@ class AccountFragment : Fragment() {
         val sharedPref = requireContext().getSharedPreferences("UserSession", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", 1)
 
-        // Make API call to update password
         changePasswordApi.changePassword(userId, newPassword).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
@@ -187,7 +184,6 @@ class AccountFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
 
-        // Optionally, show a toast
         Toast.makeText(requireContext(), "Logged out successfully!", Toast.LENGTH_SHORT).show()
     }
 }
