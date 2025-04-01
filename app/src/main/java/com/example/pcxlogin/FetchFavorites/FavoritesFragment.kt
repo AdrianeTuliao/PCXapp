@@ -162,7 +162,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             items = item.productName,
             total = item.price * quantity,
             quantity = quantity,
-            productId = item.productId
+            productId = item.productId,
+            imageUrl = item.imageUrl
         )
 
         call.enqueue(object : Callback<ApiResponse> {

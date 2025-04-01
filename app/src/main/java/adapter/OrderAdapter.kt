@@ -37,14 +37,22 @@ class OrderAdapter(
 
         Log.d("CancelOrder", "id=${order.id}, qty=${order.quantity}, productId=${order.items}")
 
-        val baseUrl = "http://192.168.18.127/PCXadmin/"
+        val imageUrl = if (order.imageUrl.startsWith("http")) {
+            order.imageUrl // Use as is
+        } else {
+            "http://192.168.18.127/PCXadmin/uploads/" + order.imageUrl
+        }
+
+        Log.d("ImageUrl", "Final image URL: $imageUrl")
+
         Glide.with(holder.itemView.context)
-            .load(baseUrl + order.image)
+            .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
             .error(R.drawable.ic_launcher_foreground)
             .into(binding.productImage)
 
-        // Handle Cancel button visibility based on order status
+
+
         val status = order.order_status.trim()
 
         if (status == "Pending Orders" || status == "Preparing Stage") {

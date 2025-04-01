@@ -17,6 +17,7 @@ import retrofit2.Response
 
 class OrderFragment : Fragment() {
 
+    // Declare variables
     private lateinit var ordersRecyclerView: RecyclerView
     private lateinit var orderAdapter: OrderAdapter
     private lateinit var tabLayout: TabLayout
@@ -30,12 +31,12 @@ class OrderFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_order, container, false)
 
+        // Initialize views
         ordersRecyclerView = view.findViewById(R.id.ordersRecyclerViewMemory)
         tabLayout = view.findViewById(R.id.orderStatusTabLayout)
 
         ordersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Pass the cancel callback lambda when initializing the adapter
         orderAdapter = OrderAdapter(filteredList) { order ->
             showCancelConfirmation(order)
         }
@@ -49,6 +50,7 @@ class OrderFragment : Fragment() {
         return view
     }
 
+    // Helper function to set up tabs
     private fun setupTabs() {
         val tabs =
             listOf("Pending Orders", "Preparing", "Ready for Pick Up", "Completed", "Cancelled")
@@ -57,7 +59,7 @@ class OrderFragment : Fragment() {
             tabLayout.addTab(tabLayout.newTab().setText(status))
         }
 
-        // Listener for tab selection
+        // Set default tab
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -71,26 +73,39 @@ class OrderFragment : Fragment() {
         })
     }
 
+    // Fetch orders from the API
     private fun fetchOrders() {
         val api = OrderClient.instance
 
         api.getOrders().enqueue(object : Callback<List<Order>> {
             override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
                 if (response.isSuccessful) {
-                    response.body()?.let {
+                    val orders = response.body()
+                    Log.d("API_RESPONSE", "Orders: $orders")
+
+                    if (orders != null && orders.isNotEmpty()) {
                         orderList.clear()
-                        orderList.addAll(it)
-                        filterOrdersByStatus("Pending Orders") // Default tab
+                        orderList.addAll(orders)
+                        filterOrdersByStatus("Pending Orders")
+                    } else {
+                        Log.d("API_RESPONSE", "No orders returned from the server.")
                     }
+                } else {
+                    Log.e("API_ERROR", "Response Code: ${response.code()}")
+                    Log.e("API_ERROR", "Error Body: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Order>>, t: Throwable) {
+                Log.e("API_ERROR", "Request failed: ${t.localizedMessage}")
                 t.printStackTrace()
+                Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
             }
         })
+
     }
 
+    // Filter orders based on the selected tab
     private fun filterOrdersByStatus(status: String) {
         filteredList.clear()
 
@@ -108,6 +123,7 @@ class OrderFragment : Fragment() {
         orderAdapter.notifyDataSetChanged()
     }
 
+    // Show a confirmation dialog before canceling an order
     private fun showCancelConfirmation(order: Order) {
         AlertDialog.Builder(requireContext())
             .setTitle("Cancel Order?")
@@ -119,6 +135,7 @@ class OrderFragment : Fragment() {
             .show()
     }
 
+    // Cancel an order
     private fun cancelOrder(order: Order) {
         api.cancelOrder(order.id, order.quantity, order.items)
             .enqueue(object : Callback<ApiRes> {
@@ -144,6 +161,7 @@ class OrderFragment : Fragment() {
                     }
                 }
 
+                // Handle failure
                 override fun onFailure(call: Call<ApiRes>, t: Throwable) {
                     t.printStackTrace()
                     Toast.makeText(requireContext(), "Error: ${t.localizedMessage}", Toast.LENGTH_LONG).show()

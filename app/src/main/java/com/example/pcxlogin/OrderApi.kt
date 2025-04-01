@@ -32,7 +32,7 @@ data class Order(
     val total: String,
     val payment_status: String,
     val order_status: String,
-    val image: String,
+    val imageUrl: String,
 )
 
 

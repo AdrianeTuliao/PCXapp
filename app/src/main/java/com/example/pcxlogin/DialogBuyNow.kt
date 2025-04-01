@@ -108,7 +108,8 @@ class DialogBuyNow(
             items = productName,
             total = basePrice * quantity,
             quantity = quantity,
-            productId = productId
+            productId = productId,
+            imageUrl = productImageUrl
         )
 
         call.enqueue(object : Callback<ApiResponse> {

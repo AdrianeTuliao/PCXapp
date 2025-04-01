@@ -14,6 +14,7 @@ interface BuyNowApi {
         @Field("total") total: Double,
         @Field("quantity") quantity: Int,
         @Field("product_id") productId: Int,
+        @Field("imageUrl") imageUrl: String
     ): Call<ApiResponse>
 }
 
