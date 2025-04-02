@@ -22,6 +22,7 @@ data class FavoriteItemResponse(
     @SerializedName("product_name") val productName: String,
     @SerializedName("product_image") val imageUrl: String,
     @SerializedName("stocks") val stocks: Int,
-    @SerializedName("price") val price: Double
+    @SerializedName("price") val price: Double,
+    @SerializedName("quantity") val quantity: Int
 )
 

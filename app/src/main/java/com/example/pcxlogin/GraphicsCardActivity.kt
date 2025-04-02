@@ -21,7 +21,6 @@ class GraphicsCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graphicscard)
 
-        // Back Button Listener
         val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
 
@@ -30,7 +29,6 @@ class GraphicsCardActivity : AppCompatActivity() {
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.topAppBar)
         setSupportActionBar(toolbar)
-
 
         recyclerView = findViewById(R.id.recyclerViewGraphicsCard)
         recyclerView.layoutManager = LinearLayoutManager(this)

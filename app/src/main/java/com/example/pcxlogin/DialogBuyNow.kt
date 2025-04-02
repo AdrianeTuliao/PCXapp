@@ -86,20 +86,49 @@ class DialogBuyNow(
         updateButtonsState(btnDecrease)
     }
 
+    // Confirmation Dialog for buy now
     private fun showConfirmationDialog() {
-        AlertDialog.Builder(context)
-            .setTitle("Confirm Order")
-            .setMessage("Are you sure you want to place this order for $quantity item(s) totaling ₱${String.format("%,.2f", basePrice * quantity)}?")
-            .setPositiveButton("Yes") { dialog, _ ->
-                dialog.dismiss()
-                placeOrder()
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirm_order, null)
+
+        val imgProduct = dialogView.findViewById<ImageView>(R.id.confirmProductImage)
+        val txtProductName = dialogView.findViewById<TextView>(R.id.confirmProductName)
+        val txtQuantity = dialogView.findViewById<TextView>(R.id.confirmQuantity)
+        val txtTotalPrice = dialogView.findViewById<TextView>(R.id.confirmTotalPrice)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+        val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+
+        Glide.with(context)
+            .load(productImageUrl)
+            .centerCrop()
+            .into(imgProduct)
+
+        txtProductName.text = productName
+        txtQuantity.text = "Quantity: $quantity"
+        txtTotalPrice.text = "Total: ₱${String.format("%,.2f", basePrice * quantity)}"
+
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.show()
+
+
+        // Handle button clicks
+        btnCancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        btnConfirm.setOnClickListener {
+            alertDialog.dismiss()
+            placeOrder()
+        }
+
+        alertDialog.show()
     }
 
+
+    // Place Order
     private fun placeOrder() {
         val api = BuyNowClient.instance
 
@@ -112,13 +141,12 @@ class DialogBuyNow(
             imageUrl = productImageUrl
         )
 
+        // Handle API response
         call.enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 val apiResponse = response.body()
                 if (apiResponse != null && apiResponse.success) {
                     Toast.makeText(context, "Order placed successfully!", Toast.LENGTH_SHORT).show()
-                    onBuyNowClicked(quantity, basePrice * quantity)
-                    dismiss()
                 } else {
                     Toast.makeText(context, apiResponse?.message ?: "Failed to place order.", Toast.LENGTH_SHORT).show()
                 }

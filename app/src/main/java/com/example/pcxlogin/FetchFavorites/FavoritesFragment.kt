@@ -27,6 +27,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private lateinit var favoritesAdapter: FavoritesAdapter
     private lateinit var tvNoFavorites: TextView
     private lateinit var tvMyFav: TextView
+    private val productImage: String = ""
     private val favoriteItems = mutableListOf<FavoriteItemResponse>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -108,18 +109,27 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         productStock.text = "Stocks: ${item.stocks}"
         quantityText.text = "1"
 
+        var quantity = 1
+        val basePrice = item.price
+
+        fun updateTotalPrice() {
+            val totalPrice = basePrice * quantity
+            productPrice.text = "₱${String.format("%,.2f", totalPrice)}"
+        }
+
         btnMinus.setOnClickListener {
-            val currentQuantity = quantityText.text.toString().toInt()
-            if (currentQuantity > 1) {
-                quantityText.text = (currentQuantity - 1).toString()
+            if (quantity > 1) {
+                quantity--
+                quantityText.text = quantity.toString()
+                updateTotalPrice()
             }
         }
 
-
         btnPlus.setOnClickListener {
-            val currentQuantity = quantityText.text.toString().toInt()
-            if (currentQuantity < item.stocks) {
-                quantityText.text = (currentQuantity + 1).toString()
+            if (quantity < item.stocks) {
+                quantity++
+                quantityText.text = quantity.toString()
+                updateTotalPrice()
             } else {
                 showStockExceededDialog()
             }
@@ -140,20 +150,48 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         dialog.show()
     }
 
+
+
+    // Confirmation Dialog for buy now
     private fun showConfirmationDialog(item: FavoriteItemResponse, quantity: Int) {
-        val totalPrice = item.price * quantity
-        AlertDialog.Builder(requireContext())
-            .setTitle("Confirm Order")
-            .setMessage("Are you sure you want to place this order for $quantity item(s) totaling ₱${String.format("%,.2f", totalPrice)}?")
-            .setPositiveButton("Yes") { dialog, _ ->
-                dialog.dismiss()
-                placeOrder(item, quantity)
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirm_order, null)
+
+        val imgProduct = dialogView.findViewById<ImageView>(R.id.confirmProductImage)
+        val txtProductName = dialogView.findViewById<TextView>(R.id.confirmProductName)
+        val txtQuantity = dialogView.findViewById<TextView>(R.id.confirmQuantity)
+        val txtTotalPrice = dialogView.findViewById<TextView>(R.id.confirmTotalPrice)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+        val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+
+        Glide.with(requireContext())
+            .load(item.imageUrl)
+            .centerCrop()
+            .into(imgProduct)
+
+        txtProductName.text = item.productName
+        txtQuantity.text = "Quantity: $quantity"
+        txtTotalPrice.text = "Total: ₱${String.format("%,.2f", item.price * quantity)}"
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.show()
+
+        // Handle button clicks
+        btnCancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        btnConfirm.setOnClickListener {
+            alertDialog.dismiss()
+            placeOrder(item, quantity)
+        }
+
+        alertDialog.show()
     }
+
 
     private fun placeOrder(item: FavoriteItemResponse, quantity: Int) {
         val api = BuyNowClient.instance
