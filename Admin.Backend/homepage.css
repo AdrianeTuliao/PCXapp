@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-image: url('bg.jpg');
+}
+
+.sidebar {
+    width: 250px;
+    background: #313131;
+    color: white;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    transition: 0.3s;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #000000;
+    transform: scale(1.05);
+    transition: background 0.3s ease-in-out;
+}
+
+.menu {
+    width: 90%;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    list-style: none;
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    margin-top: 20px;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000000;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .menu li a {
+    display: block; 
+    text-decoration: none; 
+  }
+  
+  .menu li:hover,
+  .menu li.active, a:active {
+    align-items: center;
+    background: #fff;
+    font-display: #79747E;
+    border-radius: 20px;
+    margin-left: 10px;
+    width: 90%;
+    font-weight: bold;
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(0.99);
+  }
+
+.content {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    overflow: auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated-text {
+    font-size: 36px;
+    font-weight: bold;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.animated-text1 {
+    font-size: 25px;
+    font-weight: bold;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.animated-text2 {
+    font-size: 16px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-btn {
+    background-color: #313131;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #5a545e;
+}
+
+/* Page transition effect */
+.page {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Fade-in and slide-up effect */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text animations */
+.animated-text1 {
+    opacity: 0;
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.animated-text {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+.animated-text2 {
+    opacity: 0;
+    animation: slideInRight 1s ease-out 1s forwards;
+}
+
+/* Keyframes for individual text animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% / 5 - 10px); 
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+/* Text animations */
+.animateds {
+  opacity: 0;
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+/* Text animations */
+.animated-text1 {
+  opacity: 0;
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.animated-text {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+.animated-text2 {
+  opacity: 0;
+  animation: slideInRight 1s ease-out 1s forwards;
+}
+
+/* Keyframes for individual text animations */
+@keyframes slideInLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

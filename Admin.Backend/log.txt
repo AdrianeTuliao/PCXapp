@@ -1,0 +1,273 @@
+Array
+(
+    [order_id] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [order_id] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [product_id] => 0
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    ["id_order=25&quantity=1&items=Kingston_Fury_Beast_32GB"] => 
+)
+Array
+(
+    [KEY] =>  items         VALUE: Kingston Fury Beast 32GB
+)
+Array
+(
+    [KEY] =>  items         VALUE: Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 26
+    [quantity] => 1
+    [items] => Intel Core i7-12700
+)
+Array
+(
+    [id_order] => 27
+    [quantity] => 1
+    [items] => RAKK LAM-ANG PRO MAX 
+)
+Array
+(
+    [id_order] => 28
+    [quantity] => 1
+    [items] => Intel Core i7-12700
+)
+Array
+(
+    [id_order] => 29
+    [quantity] => 1
+    [items] => MSI MPG B550
+)
+Array
+(
+    [id_order] => 22
+    [quantity] => 1
+    [items] => RAKK LAM-ANG PRO MAX 
+)
+Array
+(
+    [id_order] => 23
+    [quantity] => 1
+    [items] => RAKK LAM-ANG PRO MAX 
+)
+Array
+(
+    [id_order] => 32
+    [quantity] => 1
+    [items] => Intel Core I5-12400F
+)
+Array
+(
+    [id_order] => 33
+    [quantity] => 1
+    [items] => Galax RTX 4060
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 25
+    [quantity] => 1
+    [items] => Kingston Fury Beast 32GB
+)
+Array
+(
+    [id_order] => 35
+    [quantity] => 1
+    [items] => Logitech G502
+)
+Array
+(
+)
+Array
+(
+    [id_order] => 35
+    [quantity] => 1
+    [items] => Logitech G502
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+    [id_order] => 34
+    [quantity] => 1
+    [items] => Logitech G502
+)
+Array
+(
+    [id_order] => 24
+    [quantity] => 1
+    [items] => Royal Kludge RK61 Trimode
+)
+Array
+(
+    [id_order] => 36
+    [quantity] => 1
+    [items] => Intel Core I5-12400
+)
+Array
+(
+    [id_order] => 37
+    [quantity] => 1
+    [items] => Intel Core I5-12400
+)
+Array
+(
+    [id_order] => 38
+    [quantity] => 1
+    [items] => Intel Core I5-12400
+)
+Array
+(
+    [id_order] => 39
+    [quantity] => 1
+    [items] => Intel Core I5-12400F
+)
+Array
+(
+    [id_order] => 40
+    [quantity] => 1
+    [items] => Asrock B550M Pro SE
+)
+Array
+(
+    [id_order] => 41
+    [quantity] => 1
+    [items] => Asrock B550M Pro SE
+)
+Array
+(
+    [id_order] => 42
+    [quantity] => 1
+    [items] => Asrock B550M Pro SE
+)
+Array
+(
+    [id_order] => 43
+    [quantity] => 2
+    [items] => Asrock B550M Pro SE
+)
+Array
+(
+    [id_order] => 46
+    [quantity] => 1
+    [items] => Galax NVIDIA® GeForce RTX 4070 Ti
+)
+Array
+(
+    [id_order] => 58
+    [quantity] => 2
+    [items] => [{"isSelected":true,"product_id":3,"product_image_url":"http://192.168.18.127/PCXadmin/uploads/Intel_Core_i7-12700_Alder_Lake_Socket_LGA_1700_4.90GHz_Processor-a_540x.webp","product_name":"Intel Core i7-12700","product_price":16795.0,"product_stock":4,"quantity":1,"user_id":0},{"isSelected":true,"product_id":2,"product_image_url":"http://192.168.18.127/PCXadmin/uploads/rtx4070.png","product_name":"Galax NVIDIA® GeForce RTX 4070 Ti","product_price":56450.0,"product_stock":7,"quantity":1,"user_id":0}]
+)
+Array
+(
+    [id_order] => 59
+    [quantity] => 1
+    [items] => [{"isSelected":true,"product_id":2,"product_image_url":"http://192.168.18.127/PCXadmin/uploads/rtx4070.png","product_name":"Galax NVIDIA® GeForce RTX 4070 Ti","product_price":56450.0,"product_stock":7,"quantity":1,"user_id":0}]
+)
+Array
+(
+    [id_order] => 60
+    [quantity] => 1
+    [items] => [{"isSelected":true,"product_id":3,"product_image_url":"http://192.168.18.127/PCXadmin/uploads/Intel_Core_i7-12700_Alder_Lake_Socket_LGA_1700_4.90GHz_Processor-a_540x.webp","product_name":"Intel Core i7-12700","product_price":16795.0,"product_stock":4,"quantity":1,"user_id":0}]
+)
+Array
+(
+    [id_order] => 61
+    [quantity] => 1
+    [items] => [{"isSelected":true,"product_id":76,"product_image_url":"http://192.168.18.127/PCXadmin/uploads/images.jfif","product_name":"Gamdias Monitor Atlas DHD32C \"31.5","product_price":11900.0,"product_stock":12,"quantity":1,"user_id":0}]
+)
