@@ -102,10 +102,10 @@ class AccountFragment : Fragment() {
         eyeIconNewPassword.setOnClickListener {
             if (isPasswordVisible) {
                 newPasswordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                eyeIconNewPassword.setImageResource(R.drawable.ic_eye_closed) // Eye Off icon
+                eyeIconNewPassword.setImageResource(R.drawable.ic_eye_closed)
             } else {
                 newPasswordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                eyeIconNewPassword.setImageResource(R.drawable.ic_eye_open) // Eye On icon
+                eyeIconNewPassword.setImageResource(R.drawable.ic_eye_open)
             }
             isPasswordVisible = !isPasswordVisible
         }

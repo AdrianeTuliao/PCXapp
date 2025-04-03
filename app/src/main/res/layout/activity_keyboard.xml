@@ -41,22 +41,6 @@
                 android:layout_width="10dp"
                 android:layout_height="match_parent" />
 
-            <EditText
-                android:id="@+id/searchBar"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="6"
-                android:hint="Search..."
-                android:textColor="@color/white"
-                android:textColorHint="#CCCCCC"
-                android:background="@drawable/rounded_corner"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="8dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:inputType="text"
-                android:singleLine="true" />
-
             <View
                 android:layout_width="10dp"
                 android:layout_height="match_parent" />
@@ -67,10 +51,22 @@
                 android:layout_height="35dp"
                 android:src="@drawable/ic_scart"
                 android:contentDescription="Shopping Cart"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginStart="213dp" />
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/KB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keyboard"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewKeyboard"

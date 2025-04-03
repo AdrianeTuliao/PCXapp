@@ -1,10 +1,14 @@
 package com.example.pcxlogin
 
+import android.content.Context
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
 import retrofit2.http.POST
+
 
 interface CartApi {
     @FormUrlEncoded
@@ -39,7 +43,20 @@ interface CartApi {
         @Field("product_id") productId: Int,
         @Field("quantity") quantity: Int
     ): Call<ApiRes1>
+
+    @FormUrlEncoded
+    @POST("create_order.php")
+    fun placeOrder(
+        @Field("customer_name") customerName: String,
+        @Field("items") items: String,
+        @Field("total") total: Double,
+        @Field("quantity") quantity: Int,
+        @Field("product_id") productId: Int,
+        @Field("imageUrl") imageUrl: String
+    ): Call<ApiRes1>
 }
+
+
 
 data class CartItem(
     @SerializedName("user_id") val userId: Int,
@@ -61,6 +78,14 @@ data class CartResponse(
     val success: Boolean,
     val cart_items: List<CartItem>
 )
+
+data class OrderRequest(
+    val customerName: String,
+    val items: List<CartItem>,
+    val total: Double
+)
+
+
 
 
 

@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object BuyNowClient {
-    private const val BASE_URL = "http://192.168.18.127/PCXadmin/"
+    private const val BASE_URL = "http://192.168.250.183/PCXadmin/"
 
     val instance: BuyNowApi by lazy {
         val retrofit = Retrofit.Builder()

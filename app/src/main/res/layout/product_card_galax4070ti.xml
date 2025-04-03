@@ -11,27 +11,27 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/prime"
+        android:src="@drawable/rtx4070"
         android:scaleType="centerCrop" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PRIME B450M-A ll"
+        android:text="Galax NVIDIA® GeForce RTX 4070 Ti"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:paddingTop="4dp" />
+        android:paddingTop="4dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="₱4.700.00"
+        android:text="₱56,450.00"
         android:textSize="16sp"
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/viewProductBtn4"
+        android:id="@+id/viewProductBtn13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Product"

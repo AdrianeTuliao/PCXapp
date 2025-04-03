@@ -40,7 +40,7 @@ class OrderAdapter(
         val imageUrl = if (order.imageUrl.startsWith("http")) {
             order.imageUrl // Use as is
         } else {
-            "http://192.168.18.127/PCXadmin/uploads/" + order.imageUrl
+            "http://192.168.250.183/PCXadmin/uploads/" + order.imageUrl
         }
 
         Log.d("ImageUrl", "Final image URL: $imageUrl")

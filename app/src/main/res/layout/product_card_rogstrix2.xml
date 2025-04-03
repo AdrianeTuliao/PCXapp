@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ROG Strix Z760-F"
+        android:text="ROG Strix Z790-F"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -26,11 +26,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="₱15,600.00"
+        android:text="₱24,550.00"
         android:textSize="16sp"
         android:textColor="@color/black" />
 
     <Button
+        android:id="@+id/viewProductBtn5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Product"
