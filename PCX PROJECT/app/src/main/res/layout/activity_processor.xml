@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ShopFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#79747E"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <ImageView
+                android:id="@+id/pcxLogo"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/logo_rn"
+                android:contentDescription="Shopping Cart"
+                android:layout_marginEnd="5dp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                android:layout_weight="-0.2" />
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="6"
+                android:hint="Search..."
+                android:textColor="@color/white"
+                android:textColorHint="#CCCCCC"
+                android:background="@drawable/rounded_corner"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.2" />
+
+            <ImageView
+                android:id="@+id/sCart"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_scart"
+                android:contentDescription="Shopping Cart"
+                android:layout_marginEnd="16dp" />
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="6"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="150dp">
+    </GridLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigationView"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/intel"
+                android:contentDescription="Processor Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AMD Ryzen 5 5600X"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:paddingTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Socket AM4 3.7GHz with Wraith Stealth Cooler VR Ready Premium Desktop Processor"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="₱5,715.00"
+                android:textSize="25sp"/>
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#79747E"
+                android:text="BUY NOW"
+                android:textSize="23sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="Processor Image 2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ryzen" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:text="AMD Ryzen 5 5600G"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="Socket Am4 3.9GHz with Radeon Vega 7 Processor with Wraith stealth cooler MPK"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="₱5,715.00"
+                android:textSize="25sp"/>
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#79747E"
+                android:text="BUY NOW"
+                android:textSize="23sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/intel"
+                android:contentDescription="Processor Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Intel Core i7 12700K"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:paddingTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12th Gen Intel Core i7 with 12 cores and 20 threads. Base clock 3.6GHz, Turbo up to 5.0GHz."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="Processor Image 2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ryzen" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AMD Ryzen 9 5900X"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:paddingTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12-Core, 24-Thread Processor with a base clock of 3.7GHz and max boost up to 4.8GHz."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="33dp"
+        app:backgroundTint="#79747E"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white" />
+
+</RelativeLayout>

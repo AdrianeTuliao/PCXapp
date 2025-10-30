@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:left="-0dp"
+        android:right="-0dp"
+        android:top="-0dp"
+        android:bottom="-0dp">
+
+    <bitmap
+        android:src="@drawable/pcxlogo3"
+        android:alpha="0.8"
+        android:gravity="center"
+        android:tileMode="disabled"
+        android:tint="#AA000000"
+        android:tintMode="src_atop" />
+
+</item>
+
+    </layer-list>
